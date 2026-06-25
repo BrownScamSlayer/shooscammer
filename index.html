@@ -13,25 +13,21 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#000000;
-    font-family:Arial, Helvetica, sans-serif;
+    background:#000;
+    font-family:Arial, sans-serif;
     overflow:hidden;
 }
 
+/* FORCE SINGLE LINE DISPLAY */
 #message{
     color:white;
-    font-size:clamp(32px,5vw,80px);
+    font-size:clamp(28px,5vw,70px);
     font-weight:900;
     text-align:center;
-    padding:20px;
     text-transform:uppercase;
-    animation:flash 0.4s infinite;
-}
-
-@keyframes flash{
-    0%{opacity:1;}
-    50%{opacity:0.25;}
-    100%{opacity:1;}
+    white-space:nowrap;      /* IMPORTANT: prevents line breaks */
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 </style>
 
@@ -72,11 +68,11 @@ const third = [
 const fourth = [
 "THE INTERNET IS CONCERNED","THE QR CODE HAS QUESTIONS","FURTHER REVIEW RECOMMENDED",
 "COMMON SENSE HAS ENTERED THE CHAT","INVESTIGATION CONTINUES","THE SYSTEM REMAINS SKEPTICAL",
-"MORE DATA REQUIRED","REVIEW IN PROGRESS","FINAL VERDICT PENDING","PLEASE STAND BY"
+"REVIEW IN PROGRESS","FINAL VERDICT PENDING","PLEASE STAND BY","MORE DATA REQUIRED"
 ];
 
 /* =========================
-   HELPERS
+   RANDOM PICKER
 ========================= */
 
 function pick(arr){
@@ -84,15 +80,15 @@ function pick(arr){
 }
 
 function generateMessage(){
-    return `${pick(first)}\n${pick(second)}\n${pick(third)}\n\n${pick(fourth)}`;
+    return `${pick(first)} ${pick(second)} ${pick(third)} — ${pick(fourth)}`;
 }
 
 /* =========================
-   LOOP (ONE MESSAGE AT A TIME)
+   LOOP
 ========================= */
 
 function update(){
-    document.getElementById("message").innerText = generateMessage();
+    document.getElementById("message").textContent = generateMessage();
 }
 
 update();
