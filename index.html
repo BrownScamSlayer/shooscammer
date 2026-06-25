@@ -1,190 +1,173 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Scanner Result</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suspicion Scanner</title>
 
 <style>
-
 body{
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:black;
-font-family:Arial,sans-serif;
-overflow:hidden;
-transition:all .3s;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+    transition:background-color .4s;
 }
 
 #message{
-font-size:5vw;
-font-weight:bold;
-text-align:center;
-padding:20px;
-animation:flash .4s infinite;
+    width:90%;
+    text-align:center;
+    font-size:clamp(28px,5vw,80px);
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    animation:flash .35s infinite;
 }
 
 @keyframes flash{
-0%{opacity:1;}
-50%{opacity:.2;}
-100%{opacity:1;}
+    0%{opacity:1;}
+    50%{opacity:.2;}
+    100%{opacity:1;}
 }
-
 </style>
 
 </head>
-
 <body>
 
 <div id="message">ANALYZING...</div>
 
 <script>
 
-const messages = [
-"SCAMMER SPOTTED",
-"FRAUD DETECTED",
-"NICE TRY",
-"YOU GOT CAUGHT",
-"RED FLAGS EVERYWHERE",
-"HONESTY NOT FOUND",
-"MISSION FAILED",
-"TOO MANY RED FLAGS",
-"THE JIG IS UP",
-"THE INTERNET KNOWS",
-"BUSTED",
-"CAUGHT IN 4K",
-"ERROR 404: HONESTY NOT FOUND",
-"SUSPICIOUS ACTIVITY DETECTED",
-"TRY AGAIN NEVER",
-"YOU ACTIVATED ROAST MODE",
-"SHADY DETECTED",
-"HIGH RISK VISITOR",
-"BAD ACTOR DETECTED",
-"LOL NICE ATTEMPT",
-
-"THE QR IS LAUGHING",
-"THE SERVER IS DISAPPOINTED",
-"YOUR COVER IS BLOWN",
-"NOT TODAY",
-"THE AUDACITY",
-"THE DETECTOR NEVER SLEEPS",
-"TRUST LEVEL: ZERO",
-"DECEPTION DETECTED",
-"UNAUTHORIZED SHADINESS",
-"YOU WERE EXPECTED",
-
-"FRAUD SCORE: 100",
-"SCHEME COLLAPSED",
-"VILLAIN ARC DETECTED",
-"YOU PICKED THE WRONG QR",
-"MISSION ABORTED",
-"PLOT TWIST: WE NOTICED",
-"THE CROWD IS BOOING",
-"THE INTERNET REMEMBERS",
-"SCAN COMPLETE",
-"TARGET ACQUIRED",
-
-"ATTEMPT UNSUCCESSFUL",
-"FAKE VIBES DETECTED",
-"TOO OBVIOUS",
-"TOO MANY CLUES",
-"LOW CREDIBILITY",
-"CREDIBILITY NOT FOUND",
-"TRUST CHECK FAILED",
-"VIBE CHECK FAILED",
-"VERIFICATION FAILED",
-"THE QR CODE HAS SPOKEN",
-
-"BETTER HIDE THE RED FLAGS",
-"THE PLAN HAS FAILED",
-"HONESTY UPDATE REQUIRED",
-"YOU TRIGGERED THE ALARM",
-"ALARM ACTIVATED",
-"MAXIMUM SUS LEVEL",
-"SUS LEVEL 999",
-"CRITICAL SCAM LEVEL",
-"THIS IS EMBARRASSING",
-"EVERYONE SAW THAT",
-
-"THE EVIDENCE IS STACKING UP",
-"YOU HAD ONE JOB",
-"ABSOLUTELY NOT",
-"NOPE",
-"DENIED",
-"ACCESS REVOKED",
-"YOU HAVE BEEN ROASTED",
-"ROAST COMPLETE",
-"ROAST BUFFER OVERFLOW",
-"SCAM SHIELD ACTIVATED",
-
-"YOU AGAIN?",
-"SERIOUSLY?",
-"THAT DIDN'T WORK",
-"WHO APPROVED THIS?",
-"QUESTIONABLE DECISIONS",
-"THE CASE IS CLOSED",
-"GAME OVER",
-"THANKS FOR PLAYING",
-"INSERT HONESTY HERE",
-"BETTER LUCK NEVER"
+const openings = [
+"SCAM DETECTOR",
+"SUSPICION SCANNER",
+"TRUST ANALYZER",
+"RED FLAG MONITOR",
+"VIBE CHECK SYSTEM",
+"QR INVESTIGATION UNIT",
+"HONESTY ENGINE",
+"QUESTIONABLE ACTIVITY MONITOR",
+"ALGORITHM",
+"CASE REVIEW BOARD",
+"INTERNET COMMITTEE",
+"RISK ASSESSMENT ENGINE"
 ];
 
-while(messages.length < 300){
-messages.push(
-messages[Math.floor(Math.random()*messages.length)]
-+ " #" + messages.length
-);
+const actions = [
+"DETECTED",
+"FLAGGED",
+"IDENTIFIED",
+"LOCATED",
+"CONFIRMED",
+"RECORDED",
+"LOGGED",
+"OBSERVED",
+"ANALYZED",
+"QUESTIONED",
+"REVIEWED",
+"EXAMINED"
+];
+
+const findings = [
+"SUSPICIOUS ENERGY",
+"TOO MANY RED FLAGS",
+"A CURIOUS PATTERN",
+"UNUSUAL ACTIVITY",
+"QUESTIONABLE DECISIONS",
+"A HIGH SUS SCORE",
+"UNEXPECTED SHENANIGANS",
+"A TRUST DEFICIT",
+"ODD CIRCUMSTANCES",
+"A MYSTERIOUS SITUATION",
+"EXCESSIVE CONFIDENCE",
+"A BOLD STRATEGY",
+"A PUZZLING DEVELOPMENT",
+"AN INTERESTING EXPLANATION",
+"UNCONVINCING EVIDENCE",
+"A COMPLICATED STORY"
+];
+
+const reactions = [
+"THE INTERNET IS CONCERNED",
+"THE QR CODE HAS QUESTIONS",
+"THE SERVER REMAINS SKEPTICAL",
+"THE DETECTOR REQUESTS CLARIFICATION",
+"FURTHER REVIEW IS RECOMMENDED",
+"THE CASE CONTINUES",
+"THE INVESTIGATION EXPANDS",
+"THE EVIDENCE IS STACKING UP",
+"THE CROWD IS UNCONVINCED",
+"COMMON SENSE HAS ENTERED THE CHAT",
+"THE ALGORITHM WOULD LIKE A WORD",
+"THE AUDIT WAS INCONCLUSIVE",
+"THE FILE HAS BEEN FORWARDED",
+"ADDITIONAL RED FLAGS DETECTED"
+];
+
+const extras = [
+"CASE CLOSED",
+"CASE REOPENED",
+"TRUST SCORE: LOW",
+"VIBE CHECK FAILED",
+"ANOTHER RED FLAG APPEARED",
+"SUSPICION LEVEL: MAXIMUM",
+"PLEASE TRY HONESTY",
+"RESULTS MAY BE EMBARRASSING",
+"THIS QR CODE REMEMBERS",
+"THE DETECTOR NEVER SLEEPS",
+"FURTHER QUESTIONS EXPECTED",
+"NO ADDITIONAL COMMENTS"
+];
+
+function randomItem(arr){
+    return arr[Math.floor(Math.random()*arr.length)];
 }
 
-function shuffle(arr){
+function generateMessage(){
 
-for(let i=arr.length-1;i>0;i--){
+    return `${randomItem(openings)}
+${randomItem(actions)}
+${randomItem(findings)}
 
-let j=Math.floor(Math.random()*(i+1));
+${randomItem(reactions)}
 
-[arr[i],arr[j]]=[arr[j],arr[i]];
-
-}
-
-return arr;
+${randomItem(extras)}`;
 
 }
-
-const chosen = shuffle([...messages]).slice(0,3);
 
 const colors = [
-"red","yellow","lime",
-"cyan","orange","white",
-"magenta"
+"#ff0000",
+"#ffff00",
+"#00ff00",
+"#00ffff",
+"#ff00ff",
+"#ffffff",
+"#ff8800",
+"#88ff00",
+"#00aaff"
 ];
 
-let index = 0;
+function nextMessage(){
 
-function showNext(){
+    document.body.style.backgroundColor =
+        colors[Math.floor(Math.random()*colors.length)];
 
-document.body.style.background =
-colors[Math.floor(Math.random()*colors.length)];
+    const msg = document.getElementById("message");
 
-document.getElementById("message").style.color =
-colors[Math.floor(Math.random()*colors.length)];
+    msg.style.color =
+        colors[Math.floor(Math.random()*colors.length)];
 
-document.getElementById("message").innerText =
-chosen[index];
-
-index++;
-
-if(index < chosen.length){
-
-setTimeout(showNext,2000);
-
+    msg.innerText = generateMessage();
 }
 
-}
+nextMessage();
 
-setTimeout(showNext,1000);
+setInterval(nextMessage,1500);
 
 </script>
 
