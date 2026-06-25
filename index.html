@@ -1,44 +1,45 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>Scammer Detector</title>
+<title>Scanner Result</title>
 
 <style>
 
 body{
-background:black;
-color:red;
-font-family:Arial,sans-serif;
-text-align:center;
+margin:0;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-margin:0;
+background:black;
+font-family:Arial,sans-serif;
 overflow:hidden;
+transition:all .3s;
 }
 
 #message{
-font-size:60px;
+font-size:5vw;
 font-weight:bold;
-animation:flash 0.5s infinite;
+text-align:center;
 padding:20px;
+animation:flash .4s infinite;
 }
 
 @keyframes flash{
-0%{opacity:1;color:red;}
-50%{opacity:0.2;color:yellow;}
-100%{opacity:1;color:red;}
+0%{opacity:1;}
+50%{opacity:.2;}
+100%{opacity:1;}
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div id="message">SCANNING...</div>
+<div id="message">ANALYZING...</div>
 
 <script>
 
@@ -46,45 +47,144 @@ const messages = [
 "SCAMMER SPOTTED",
 "FRAUD DETECTED",
 "NICE TRY",
-"YOU HAVE BEEN EXPOSED",
+"YOU GOT CAUGHT",
+"RED FLAGS EVERYWHERE",
 "HONESTY NOT FOUND",
-"SCAM RADAR ACTIVATED",
-"TOO MANY RED FLAGS",
 "MISSION FAILED",
+"TOO MANY RED FLAGS",
+"THE JIG IS UP",
+"THE INTERNET KNOWS",
+"BUSTED",
+"CAUGHT IN 4K",
+"ERROR 404: HONESTY NOT FOUND",
+"SUSPICIOUS ACTIVITY DETECTED",
 "TRY AGAIN NEVER",
-"ROAST MODE ACTIVATED"
+"YOU ACTIVATED ROAST MODE",
+"SHADY DETECTED",
+"HIGH RISK VISITOR",
+"BAD ACTOR DETECTED",
+"LOL NICE ATTEMPT",
+
+"THE QR IS LAUGHING",
+"THE SERVER IS DISAPPOINTED",
+"YOUR COVER IS BLOWN",
+"NOT TODAY",
+"THE AUDACITY",
+"THE DETECTOR NEVER SLEEPS",
+"TRUST LEVEL: ZERO",
+"DECEPTION DETECTED",
+"UNAUTHORIZED SHADINESS",
+"YOU WERE EXPECTED",
+
+"FRAUD SCORE: 100",
+"SCHEME COLLAPSED",
+"VILLAIN ARC DETECTED",
+"YOU PICKED THE WRONG QR",
+"MISSION ABORTED",
+"PLOT TWIST: WE NOTICED",
+"THE CROWD IS BOOING",
+"THE INTERNET REMEMBERS",
+"SCAN COMPLETE",
+"TARGET ACQUIRED",
+
+"ATTEMPT UNSUCCESSFUL",
+"FAKE VIBES DETECTED",
+"TOO OBVIOUS",
+"TOO MANY CLUES",
+"LOW CREDIBILITY",
+"CREDIBILITY NOT FOUND",
+"TRUST CHECK FAILED",
+"VIBE CHECK FAILED",
+"VERIFICATION FAILED",
+"THE QR CODE HAS SPOKEN",
+
+"BETTER HIDE THE RED FLAGS",
+"THE PLAN HAS FAILED",
+"HONESTY UPDATE REQUIRED",
+"YOU TRIGGERED THE ALARM",
+"ALARM ACTIVATED",
+"MAXIMUM SUS LEVEL",
+"SUS LEVEL 999",
+"CRITICAL SCAM LEVEL",
+"THIS IS EMBARRASSING",
+"EVERYONE SAW THAT",
+
+"THE EVIDENCE IS STACKING UP",
+"YOU HAD ONE JOB",
+"ABSOLUTELY NOT",
+"NOPE",
+"DENIED",
+"ACCESS REVOKED",
+"YOU HAVE BEEN ROASTED",
+"ROAST COMPLETE",
+"ROAST BUFFER OVERFLOW",
+"SCAM SHIELD ACTIVATED",
+
+"YOU AGAIN?",
+"SERIOUSLY?",
+"THAT DIDN'T WORK",
+"WHO APPROVED THIS?",
+"QUESTIONABLE DECISIONS",
+"THE CASE IS CLOSED",
+"GAME OVER",
+"THANKS FOR PLAYING",
+"INSERT HONESTY HERE",
+"BETTER LUCK NEVER"
 ];
 
-function getRandomThree(arr){
+while(messages.length < 300){
+messages.push(
+messages[Math.floor(Math.random()*messages.length)]
++ " #" + messages.length
+);
+}
 
-const copy=[...arr];
+function shuffle(arr){
 
-copy.sort(()=>Math.random()-0.5);
+for(let i=arr.length-1;i>0;i--){
 
-return copy.slice(0,3);
+let j=Math.floor(Math.random()*(i+1));
+
+[arr[i],arr[j]]=[arr[j],arr[i]];
 
 }
 
-const chosen=getRandomThree(messages);
+return arr;
 
-let current=0;
+}
 
-function showMessage(){
+const chosen = shuffle([...messages]).slice(0,3);
 
-document.getElementById("message").innerText=
-chosen[current];
+const colors = [
+"red","yellow","lime",
+"cyan","orange","white",
+"magenta"
+];
 
-current++;
+let index = 0;
 
-if(current<chosen.length){
+function showNext(){
 
-setTimeout(showMessage,2000);
+document.body.style.background =
+colors[Math.floor(Math.random()*colors.length)];
+
+document.getElementById("message").style.color =
+colors[Math.floor(Math.random()*colors.length)];
+
+document.getElementById("message").innerText =
+chosen[index];
+
+index++;
+
+if(index < chosen.length){
+
+setTimeout(showNext,2000);
 
 }
 
 }
 
-setTimeout(showMessage,1000);
+setTimeout(showNext,1000);
 
 </script>
 
