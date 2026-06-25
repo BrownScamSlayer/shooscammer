@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Scanner</title>
 
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+}
+
+#text{
+  color:white;
+  font-size:50px;
+  font-weight:bold;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div id="text">INITIALIZING...</div>
+
+<script>
+const messages = [
+"SCANNING",
+"ANALYZING",
+"CHECKING SYSTEM",
+"PROCESSING DATA",
+"RUNNING VERIFICATION",
+"LOOKING FOR ISSUES",
+"SYSTEM ACTIVE"
+];
+
+function update(){
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  document.getElementById("text").textContent = messages[randomIndex];
+}
+
+update();
+setInterval(update, 1000);
+</script>
+
+</body>
+</html>
