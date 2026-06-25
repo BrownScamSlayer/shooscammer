@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Scammer Detector</title>
+
+<style>
+
+body{
+background:black;
+color:red;
+font-family:Arial,sans-serif;
+text-align:center;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+overflow:hidden;
+}
+
+#message{
+font-size:60px;
+font-weight:bold;
+animation:flash 0.5s infinite;
+padding:20px;
+}
+
+@keyframes flash{
+0%{opacity:1;color:red;}
+50%{opacity:0.2;color:yellow;}
+100%{opacity:1;color:red;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="message">SCANNING...</div>
+
+<script>
+
+const messages = [
+"SCAMMER SPOTTED",
+"FRAUD DETECTED",
+"NICE TRY",
+"YOU HAVE BEEN EXPOSED",
+"HONESTY NOT FOUND",
+"SCAM RADAR ACTIVATED",
+"TOO MANY RED FLAGS",
+"MISSION FAILED",
+"TRY AGAIN NEVER",
+"ROAST MODE ACTIVATED"
+];
+
+function getRandomThree(arr){
+
+const copy=[...arr];
+
+copy.sort(()=>Math.random()-0.5);
+
+return copy.slice(0,3);
+
+}
+
+const chosen=getRandomThree(messages);
+
+let current=0;
+
+function showMessage(){
+
+document.getElementById("message").innerText=
+chosen[current];
+
+current++;
+
+if(current<chosen.length){
+
+setTimeout(showMessage,2000);
+
+}
+
+}
+
+setTimeout(showMessage,1000);
+
+</script>
+
+</body>
+</html>
