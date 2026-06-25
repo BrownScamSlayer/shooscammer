@@ -1,69 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Scanner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threat Scanner</title>
 
 <style>
 body{
   margin:0;
   height:100vh;
-  background:black;
+  background:#000;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:Arial;
+  font-family:Arial, sans-serif;
 }
 
 #text{
-  color:white;
-  font-size:50px;
-  font-weight:bold;
+  color:#fff;
+  font-size:clamp(28px,5vw,70px);
+  font-weight:900;
   text-align:center;
-  transition: opacity 0.15s ease;
+  text-transform:uppercase;
+  transition:opacity 0.15s ease;
 }
 </style>
 </head>
 
 <body>
 
-<div id="text">INITIALIZING...</div>
+<div id="text">INITIALIZING SCAM DETECTION...</div>
 
 <script>
 
-const messages = [
-"SCANNING SYSTEM",
-"ANALYZING INPUT",
-"CHECKING SIGNAL",
-"RUNNING DIAGNOSTICS",
-"VERIFYING DATA",
-"SUSPICION CHECK ACTIVE",
-"TRUST LEVEL EVALUATION",
-"PATTERN ANALYSIS RUNNING",
-"LOOKING FOR ANOMALIES",
-"SYSTEM REVIEW IN PROGRESS",
-"PROCESSING REQUEST",
-"DEEP SCAN ACTIVE",
-"RISK ASSESSMENT RUNNING",
-"BEHAVIOR CHECK INITIATED",
-"INTEGRITY CHECKING",
-"DATA VALIDATION ACTIVE",
-"REALITY CHECK ENGAGED",
-"ALGORITHM THINKING",
-"SIGNAL INTERPRETATION",
-"FINALIZING ANALYSIS"
+/* =========================
+   SCAM/SPAM DETECTION THEMES
+========================= */
+
+const base = [
+"SCAM BEHAVIOR DETECTED",
+"SUSPICIOUS MESSAGE PATTERN IDENTIFIED",
+"SPAM ACTIVITY FLAGGED",
+"FRAUD INDICATORS FOUND",
+"PHISHING ATTEMPT SUSPECTED",
+"UNUSUAL LINK BEHAVIOR DETECTED",
+"FAKE ENGAGEMENT PATTERN IDENTIFIED",
+"BOT-LIKE ACTIVITY DETECTED",
+"UNVERIFIED SENDER SIGNAL",
+"KNOWN SCAM SIGNATURE MATCH",
+"SPAM FILTER TRIGGERED",
+"MULTIPLE RED FLAGS DETECTED",
+"DECEPTIVE CONTENT PATTERN FOUND",
+"UNTRUSTED COMMUNICATION SOURCE",
+"SUSPICIOUS REDIRECTION ATTEMPT",
+"LIKELY AUTOMATED MESSAGE",
+"RISKY CONTENT IDENTIFIED",
+"INSECURE REQUEST PATTERN",
+"POTENTIAL SOCIAL ENGINEERING ATTEMPT",
+"ABNORMAL MESSAGE FREQUENCY DETECTED",
+"SCAM NETWORK BEHAVIOR ANALYZED",
+"BLACKLISTED PATTERN MATCH FOUND",
+"PHISHING INDICATOR SCORE HIGH",
+"SPAM SIGNATURE CONFIRMED",
+"UNSAFE CONTENT MARKED",
+"DECEPTIVE INTENT SIGNAL DETECTED",
+"SUSPICIOUS DOMAIN BEHAVIOR",
+"FRAUD-LIKE STRUCTURE IDENTIFIED",
+"TRUST SCORE BELOW THRESHOLD",
+"RISK ALERT TRIGGERED",
+"UNAUTHENTIC MESSAGE STRUCTURE",
+"POTENTIAL DATA HARVESTING ATTEMPT",
+"SCAM CLASSIFICATION IN PROGRESS",
+"SPAM FILTER ENGAGED",
+"BEHAVIORAL ANOMALY DETECTED",
+"UNTRUSTED PATTERN RECOGNIZED",
+"FRAUD RISK EVALUATION ACTIVE",
+"SUSPICIOUS USER BEHAVIOR DETECTED",
+"LIKELY MALICIOUS INTENT SIGNAL",
+"ABNORMAL TRAFFIC SIGNATURE FOUND"
 ];
+
+/* =========================
+   GENERATE 300+ MESSAGES
+========================= */
+
+const messages = [];
+
+for (let i = 0; i < 320; i++) {
+  const pick = base[Math.floor(Math.random() * base.length)];
+  const id = Math.floor(Math.random() * 999999);
+  messages.push(`${pick} :: ALERT CODE-${id}`);
+}
+
+/* =========================
+   DISPLAY LOOP
+========================= */
 
 function update(){
   const el = document.getElementById("text");
 
-  // fade effect
   el.style.opacity = 0;
 
   setTimeout(() => {
-    el.textContent = messages[Math.floor(Math.random() * messages.length)];
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    el.textContent = msg;
     el.style.opacity = 1;
-  }, 150);
+  }, 120);
 }
 
 update();
